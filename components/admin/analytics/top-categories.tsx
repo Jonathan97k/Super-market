@@ -13,7 +13,6 @@ import {
   PieChart, 
   Pie, 
   Cell,
-  TreemapChart,
   Treemap
 } from 'recharts'
 import { 
@@ -249,7 +248,7 @@ export default function TopCategories({
 
   const renderTreemap = () => (
     <ResponsiveContainer width="100%" height={height}>
-      <TreemapChart
+      <Treemap
         data={[{
           name: 'Categories',
           children: sortedCategories.map(cat => ({
@@ -304,7 +303,7 @@ export default function TopCategories({
         )}
       >
         <Tooltip content={<CustomTooltip />} />
-      </TreemapChart>
+      </Treemap>
     </ResponsiveContainer>
   )
 

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Checkbox,
   Edit,
   Trash2,
   Copy,
@@ -97,14 +96,15 @@ export default function ProductsTable({
           <thead className="bg-gray-50 border-b border-gray-200 sticky top-0 z-10">
             <tr>
               <th className="w-12 px-4 py-3 text-left">
-                <Checkbox
+                <input
+                  type="checkbox"
                   checked={isAllSelected}
-                  ref={isIndeterminate ? (input) => {
+                  ref={isIndeterminate ? (input: any) => {
                     if (input) {
                       input.indeterminate = true
                     }
                   } : undefined}
-                  onCheckedChange={handleSelectAll}
+                  onChange={(e) => handleSelectAll(e.target.checked)}
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
               </th>
@@ -150,9 +150,10 @@ export default function ProductsTable({
               >
                 {/* Checkbox */}
                 <td className="px-4 py-4">
-                  <Checkbox
+                  <input
+                    type="checkbox"
                     checked={selectedProducts.includes(product.id)}
-                    onCheckedChange={(checked) => handleSelectProduct(product.id, checked as boolean)}
+                    onChange={(e) => handleSelectProduct(product.id, e.target.checked)}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
                 </td>
