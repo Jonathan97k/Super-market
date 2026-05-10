@@ -128,10 +128,10 @@ export default function CartItemComponent({ item, className = '' }: CartItemComp
               {/* Price */}
               <div className="text-right">
                 <div className="text-sm text-gray-500">
-                  ${item.price.toFixed(2)} each
+                  MK {item.price.toFixed(2)} each
                 </div>
                 <div className="font-semibold text-[#16A34A]">
-                  ${itemTotal.toFixed(2)}
+                  MK {itemTotal.toFixed(2)}
                 </div>
               </div>
             </div>

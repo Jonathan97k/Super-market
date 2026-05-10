@@ -169,7 +169,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       <div className="flex-1">
                         <h4 className="font-medium text-gray-900">{product.name}</h4>
                         <p className="text-sm text-gray-600 line-clamp-1">{product.description}</p>
-                        <p className="text-sm font-semibold text-green-600 mt-1">${product.price}</p>
+                        <p className="text-sm font-semibold text-green-600 mt-1">MK {product.price}</p>
                       </div>
                     </button>
                   ))}

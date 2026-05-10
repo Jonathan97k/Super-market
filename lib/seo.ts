@@ -86,14 +86,14 @@ export function generateProductSEO(product: {
     description: product.description || `Buy ${product.name} from our supermarket. Fresh quality guaranteed.`,
     keywords: [product.name, product.category, 'supermarket', 'groceries', 'fresh food'],
     openGraph: {
-      title: `${product.name} - $${product.price}`,
+      title: `${product.name} - MK ${product.price}`,
       description: product.description || `Fresh ${product.name} available at your local supermarket`,
       images: [product.image],
       type: 'product',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.name} - $${product.price}`,
+      title: `${product.name} - MK ${product.price}`,
       description: product.description || `Fresh ${product.name} available at your local supermarket`,
       images: [product.image],
     },

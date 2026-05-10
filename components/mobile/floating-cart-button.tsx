@@ -83,7 +83,7 @@ export default function FloatingCartButton() {
             {/* Cart total */}
             <div className="flex flex-col items-start">
               <span className="text-[10px] font-medium text-green-100/80">Total</span>
-              <span className="text-sm font-bold">${cartTotal.toFixed(2)}</span>
+              <span className="text-sm font-bold">MK {cartTotal.toFixed(2)}</span>
             </div>
 
             {/* Quick checkout arrow */}

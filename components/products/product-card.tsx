@@ -118,7 +118,7 @@ export default function ProductCard({
                 className="font-bold text-[#16A34A]"
                 style={{ fontSize: '1.25rem' }}
               >
-                ${product.price.toFixed(2)}
+                MK {product.price.toFixed(2)}
               </span>
               <span className="text-sm text-gray-500">per unit</span>
             </div>

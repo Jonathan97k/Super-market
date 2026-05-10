@@ -42,7 +42,7 @@ export default function ProductDetails({ product, className = '' }: ProductDetai
 
   const handleWhatsAppOrder = () => {
     const phoneNumber = '+1234567890' // Replace with actual WhatsApp number
-    const message = `Hi! I'd like to order:\n\nProduct: ${product.name}\nQuantity: ${quantity}\nPrice: $${product.price.toFixed(2)} each\nTotal: $${(product.price * quantity).toFixed(2)}\n\nPlease confirm availability and delivery details.`
+    const message = `Hi! I'd like to order:\n\nProduct: ${product.name}\nQuantity: ${quantity}\nPrice: MK ${product.price.toFixed(2)} each\nTotal: MK ${(product.price * quantity).toFixed(2)}\n\nPlease confirm availability and delivery details.`
     
     const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
@@ -129,12 +129,12 @@ export default function ProductDetails({ product, className = '' }: ProductDetai
           {/* Price */}
           <div className="flex items-baseline gap-3">
             <span className="text-4xl font-bold text-green-600">
-              ${product.price.toFixed(2)}
+              MK {product.price.toFixed(2)}
             </span>
             <span className="text-gray-500">per unit</span>
             {product.stock > 0 && (
               <span className="text-sm text-gray-500">
-                (${(product.price * quantity).toFixed(2)} total)
+                (MK {(product.price * quantity).toFixed(2)} total)
               </span>
             )}
           </div>

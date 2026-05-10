@@ -33,7 +33,7 @@ export default function StickyMobileCheckout() {
           <div className="px-4 py-3 space-y-2 bg-gray-50">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Subtotal ({cartItemsCount} items)</span>
-              <span className="font-medium">${subtotal.toFixed(2)}</span>
+              <span className="font-medium">MK {subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Shipping</span>
@@ -41,13 +41,13 @@ export default function StickyMobileCheckout() {
                 {shipping === 0 ? (
                   <span className="text-green-600">FREE</span>
                 ) : (
-                  `$${shipping.toFixed(2)}`
+                  `MK ${shipping.toFixed(2)}`
                 )}
               </span>
             </div>
             {shipping === 0 && subtotal < 50 && (
               <p className="text-xs text-green-600 font-medium">
-                🎉 Free shipping applied! (Orders over $50)
+                🎉 Free shipping applied! (Orders over MK 50)
               </p>
             )}
           </div>
@@ -57,7 +57,7 @@ export default function StickyMobileCheckout() {
             <div className="flex items-center justify-between mb-3">
               <div>
                 <p className="text-sm text-gray-600">Total</p>
-                <p className="text-2xl font-bold text-gray-900">${total.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-gray-900">MK {total.toFixed(2)}</p>
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <Lock className="w-3 h-3" />

@@ -15,7 +15,7 @@ export default function FeaturedProducts() {
             <div key={product.name} className="bg-white rounded-lg shadow hover:shadow-lg transition p-3 md:p-4">
               <div className="h-24 md:h-32 bg-gray-200 rounded mb-3 md:mb-4"></div>
               <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2">{product.name}</h3>
-              <p className="text-base md:text-lg font-bold text-blue-600">${product.price}</p>
+              <p className="text-base md:text-lg font-bold text-blue-600">MK {product.price}</p>
               <p className="text-xs md:text-sm text-gray-500">{product.unit}</p>
               <button className="mt-3 md:mt-4 w-full bg-blue-600 text-white py-2 md:py-2 rounded text-xs md:text-sm hover:bg-blue-700 transition">
                 Add to Cart
