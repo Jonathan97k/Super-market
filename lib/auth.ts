@@ -1,11 +1,10 @@
 import { getPocketBaseClient } from './pocketbase/client'
-import { cookies } from 'next/headers'
 
 // Environment variables for PocketBase
 const pocketbaseUrl = process.env.NEXT_PUBLIC_POCKETBASE_URL
 
 if (!pocketbaseUrl) {
-  throw new Error('Missing PocketBase environment variables')
+  console.warn('Missing PocketBase environment variables (NEXT_PUBLIC_POCKETBASE_URL)')
 }
 
 // Use the centralized client for general auth
@@ -13,7 +12,8 @@ const pocketbase = getPocketBaseClient()
 pocketbase.autoCancellation(false)
 
 // Create server-side PocketBase client for middleware
-export function createServerPocketBaseClient() {
+export async function createServerPocketBaseClient() {
+  const { cookies } = await import('next/headers')
   const cookieStore = cookies()
   const pb = getPocketBaseClient()
 

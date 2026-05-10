@@ -50,17 +50,19 @@ export function validatePocketBaseConfig(): PocketBaseConfig {
  */
 export function createPocketBaseClient() {
   const config = validatePocketBaseConfig()
-  
+
   if (!config.isValid) {
-    console.error('PocketBase configuration error:', config.error)
-    throw new Error(config.error)
+    console.warn('PocketBase configuration warning:', config.error, '— falling back to http://127.0.0.1:8090')
+    const pb = new PocketBase('http://127.0.0.1:8090')
+    pb.autoCancellation(false)
+    return pb
   }
 
   const pb = new PocketBase(config.url)
-  
+
   // Auto-refresh auth token
   pb.autoCancellation(false)
-  
+
   return pb
 }
 

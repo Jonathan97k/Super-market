@@ -1,4 +1,4 @@
-import { createClient } from './supabase/client'
+import { supabase } from './supabase'
 
 export interface UploadResult {
   url: string
@@ -26,7 +26,7 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 class StorageService {
-  private supabase = createClient()
+  private supabase = supabase
 
   /**
    * Validate file before upload

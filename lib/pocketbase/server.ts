@@ -57,23 +57,23 @@ export function validateServerPocketBaseConfig(): ServerPocketBaseConfig {
  */
 export function createServerPocketBaseClient() {
   const config = validateServerPocketBaseConfig()
-  
+
+  const url = config.isValid ? config.url : 'http://127.0.0.1:8090'
   if (!config.isValid) {
-    console.error('Server PocketBase configuration error:', config.error)
-    throw new Error(config.error)
+    console.warn('Server PocketBase configuration warning:', config.error, '— falling back to', url)
   }
 
   const cookieStore = cookies()
-  const pb = new PocketBase(config.url)
-  
+  const pb = new PocketBase(url)
+
   // Load auth token from cookies
   const authCookie = cookieStore.get('pb_auth')
   if (authCookie) {
     pb.authStore.loadFromCookie(authCookie.value)
   }
-  
+
   pb.autoCancellation(false)
-  
+
   return pb
 }
 

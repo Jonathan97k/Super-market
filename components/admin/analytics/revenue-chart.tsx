@@ -158,8 +158,8 @@ export default function RevenueChart({
           </div>
           
           <div className={`flex items-center ${stats.trend === 'up' ? 'text-green-600' : stats.trend === 'down' ? 'text-red-600' : 'text-gray-500'}`}>
-            {stats.trend === 'up' ? <TrendingUp className="w-4 h-4 mr-1" : 
-             stats.trend === 'down' ? <TrendingDown className="w-4 h-4 mr-1" : null}
+            {stats.trend === 'up' ? <TrendingUp className="w-4 h-4 mr-1" /> : 
+             stats.trend === 'down' ? <TrendingDown className="w-4 h-4 mr-1" /> : null}
             <span className="text-sm font-medium">
               {stats.growth > 0 ? '+' : ''}{stats.growth.toFixed(1)}%
             </span>
