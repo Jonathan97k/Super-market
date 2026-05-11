@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Home, Grid, Search, ShoppingCart, User } from 'lucide-react'
 import { useMobileNav } from '@/hooks/use-mobile-nav'
 import { useCartStore } from '@/store/cart-store'
+import { useUIStore } from '@/store/ui-store'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -18,6 +19,7 @@ const iconMap = {
 export default function BottomNavigation() {
   const { isVisible, navItems, isActive } = useMobileNav()
   const { getTotalItems } = useCartStore()
+  const { setSearchOpen } = useUIStore()
   const pathname = usePathname()
   const cartItemsCount = getTotalItems()
 
@@ -45,14 +47,15 @@ export default function BottomNavigation() {
                   const active = isActive(item.href)
                   const showBadge = item.id === 'cart' && cartItemsCount > 0
 
-                  return (
-                    <Link
-                      key={item.id}
-                      href={item.href}
-                      className="relative flex flex-col items-center justify-center py-2 px-3 min-w-[64px] group"
-                      aria-label={item.label}
-                      aria-current={active ? 'page' : undefined}
-                    >
+                  const handleClick = (e: React.MouseEvent) => {
+                    if (item.id === 'search') {
+                      e.preventDefault()
+                      setSearchOpen(true)
+                    }
+                  }
+
+                  const content = (
+                    <>
                       <div className="relative">
                         <motion.div
                           whileTap={{ scale: 0.9 }}
@@ -65,7 +68,6 @@ export default function BottomNavigation() {
                           <Icon className="w-6 h-6" strokeWidth={active ? 2.5 : 2} />
                         </motion.div>
 
-                        {/* Badge for cart */}
                         {showBadge && (
                           <motion.span
                             initial={{ scale: 0 }}
@@ -85,7 +87,6 @@ export default function BottomNavigation() {
                         {item.label}
                       </span>
 
-                      {/* Active indicator dot */}
                       {active && (
                         <motion.div
                           layoutId="activeDot"
@@ -93,6 +94,31 @@ export default function BottomNavigation() {
                           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         />
                       )}
+                    </>
+                  )
+
+                  if (item.id === 'search') {
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={handleClick}
+                        className="relative flex flex-col items-center justify-center py-2 px-3 min-w-[64px] group"
+                        aria-label={item.label}
+                      >
+                        {content}
+                      </button>
+                    )
+                  }
+
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      className="relative flex flex-col items-center justify-center py-2 px-3 min-w-[64px] group"
+                      aria-label={item.label}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {content}
                     </Link>
                   )
                 })}

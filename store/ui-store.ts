@@ -4,6 +4,7 @@ interface UIStore {
   sidebarOpen: boolean
   cartOpen: boolean
   mobileMenuOpen: boolean
+  searchOpen: boolean
   theme: 'light' | 'dark'
   loading: boolean
   notifications: Notification[]
@@ -11,6 +12,8 @@ interface UIStore {
   toggleSidebar: () => void
   toggleCart: () => void
   toggleMobileMenu: () => void
+  toggleSearch: () => void
+  setSearchOpen: (open: boolean) => void
   setTheme: (theme: 'light' | 'dark') => void
   setLoading: (loading: boolean) => void
   addNotification: (notification: Notification) => void
@@ -29,6 +32,7 @@ export const useUIStore = create<UIStore>((set, get) => ({
   sidebarOpen: false,
   cartOpen: false,
   mobileMenuOpen: false,
+  searchOpen: false,
   theme: 'light',
   loading: false,
   notifications: [],
@@ -43,6 +47,14 @@ export const useUIStore = create<UIStore>((set, get) => ({
   
   toggleMobileMenu: () => {
     set({ mobileMenuOpen: !get().mobileMenuOpen })
+  },
+
+  toggleSearch: () => {
+    set({ searchOpen: !get().searchOpen })
+  },
+
+  setSearchOpen: (open) => {
+    set({ searchOpen: open })
   },
   
   setTheme: (theme) => {

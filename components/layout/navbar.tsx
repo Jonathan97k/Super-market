@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Search, ShoppingCart, User, Menu, X, Phone, MessageCircle } from 'lucide-react'
 import { useCartStore } from '@/store/cart-store'
+import { useUIStore } from '@/store/ui-store'
 import MobileMenu from './mobile-menu'
 import SearchModal from './search-modal'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const { searchOpen, setSearchOpen } = useUIStore()
   const pathname = usePathname()
   const { getTotalItems, toggleCart } = useCartStore()
   const cartItemsCount = getTotalItems()
@@ -110,7 +111,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-2 md:space-x-4">
               {/* Search - Hidden on mobile (uses bottom nav) */}
               <button
-                onClick={() => setIsSearchOpen(true)}
+                onClick={() => setSearchOpen(true)}
                 className="hidden md:flex text-white hover:text-green-400 transition-colors p-2 rounded-lg hover:bg-white/10"
                 aria-label="Search products"
               >
@@ -156,7 +157,7 @@ export default function Navbar() {
       <MobileMenu />
 
       {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   )
 }
