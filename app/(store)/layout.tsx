@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/navbar'
 import CartSheet from '@/components/cart/cart-sheet'
 import BottomNavigation from '@/components/mobile/bottom-navigation'
 import FloatingCartButton from '@/components/mobile/floating-cart-button'
+import WhatsAppFloat from '@/components/layout/whatsapp-float'
 
 export default function StoreLayout({
   children,
@@ -15,6 +16,7 @@ export default function StoreLayout({
       <CartSheet />
       <BottomNavigation />
       <FloatingCartButton />
+      <WhatsAppFloat />
     </div>
   )
 }
