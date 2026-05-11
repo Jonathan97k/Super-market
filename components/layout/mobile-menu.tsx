@@ -123,14 +123,14 @@ export default function MobileMenu() {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-[#0B1F3A] text-white">
-            <div className="flex items-center space-x-3">
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-white ring-1 ring-white/20 shadow">
-                <Image src="/logo.png" alt="Jacke Mabvuka" fill sizes="40px" className="object-contain p-0.5" />
-              </div>
-              <div className="leading-tight">
-                <h2 className="font-bold text-base">Jacke Mabvuka</h2>
-                <p className="text-green-400 text-[11px]">Supermarket</p>
-              </div>
+            <div className="relative h-14 w-44 bg-white rounded-lg overflow-hidden ring-1 ring-white/20 shadow px-2 py-1">
+              <Image
+                src="/logo.png"
+                alt="Jacke Mabvuka Supermarket"
+                fill
+                sizes="176px"
+                className="object-contain"
+              />
             </div>
             <button
               onClick={() => setIsOpen(false)}

@@ -68,22 +68,18 @@ export default function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-14 md:h-16">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
-              <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-lg overflow-hidden bg-white/95 ring-1 ring-white/20 shadow-md group-hover:ring-green-400/50 transition">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo (image already contains brand name) */}
+            <Link href="/" className="flex items-center group" aria-label="Jacke Mabvuka Supermarket - Home">
+              <div className="relative h-12 md:h-16 w-36 md:w-52 bg-white rounded-lg overflow-hidden ring-1 ring-white/20 shadow-md group-hover:ring-green-400/60 transition px-2 py-1">
                 <Image
                   src="/logo.png"
                   alt="Jacke Mabvuka Supermarket"
                   fill
-                  sizes="48px"
-                  className="object-contain p-0.5"
+                  sizes="(max-width: 768px) 144px, 208px"
+                  className="object-contain"
                   priority
                 />
-              </div>
-              <div className="hidden sm:block leading-tight">
-                <h1 className="text-white font-bold text-base md:text-lg tracking-wide">Jacke Mabvuka</h1>
-                <p className="text-green-400 text-[10px] md:text-xs font-medium">Supermarket</p>
               </div>
             </Link>
 
