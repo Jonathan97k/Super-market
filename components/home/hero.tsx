@@ -129,7 +129,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F3A]/85 via-[#0B1F3A]/55 to-[#0B1F3A]/85" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-10 md:py-14">
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-14">
+        {/* Mobile Logo */}
+        <div className="lg:hidden mb-6 flex justify-center">
+          <div className="relative h-14 w-48 bg-white rounded-lg overflow-hidden shadow-md">
+            <Image
+              src="/logo.png"
+              alt="Jacke Mabvuka Supermarket"
+              fill
+              sizes="192px"
+              className="object-contain p-1.5"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           {/* Compact glass card */}
           <motion.div
