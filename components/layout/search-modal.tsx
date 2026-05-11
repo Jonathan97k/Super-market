@@ -81,7 +81,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     e.preventDefault()
     if (query.trim()) {
       // Navigate to search results page
-      window.location.href = `/search?q=${encodeURIComponent(query)}`
+      window.location.href = `/products?search=${encodeURIComponent(query)}`
       onClose()
     }
   }
@@ -93,7 +93,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const handleQuickSearch = (searchTerm: string) => {
     setQuery(searchTerm)
-    window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`
+    window.location.href = `/products?search=${encodeURIComponent(searchTerm)}`
     onClose()
   }
 

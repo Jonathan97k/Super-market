@@ -24,7 +24,7 @@ export default function HeroSearch() {
     e.preventDefault()
     if (searchQuery.trim()) {
       // Navigate to search results
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}&category=${selectedCategory}`
+      window.location.href = `/products?search=${encodeURIComponent(searchQuery)}${selectedCategory && selectedCategory !== 'all' ? `&category=${selectedCategory}` : ''}`
     }
   }
 

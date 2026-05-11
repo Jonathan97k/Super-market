@@ -9,6 +9,7 @@ import { Product } from '@/types/product'
 
 interface ProductGridProps {
   initialCategory?: string
+  initialSearch?: string
   className?: string
   aspectRatio?: '16:9' | '1:1'
 }
@@ -16,18 +17,16 @@ interface ProductGridProps {
 const categories = [
   { value: 'all', label: 'All Products' },
   { value: 'fresh-produce', label: 'Fresh Produce' },
-  { value: 'dairy-eggs', label: 'Dairy & Eggs' },
-  { value: 'meat-seafood', label: 'Meat & Seafood' },
+  { value: 'dairy', label: 'Dairy & Eggs' },
   { value: 'bakery', label: 'Bakery' },
+  { value: 'meat', label: 'Meat & Seafood' },
   { value: 'pantry', label: 'Pantry' },
-  { value: 'frozen', label: 'Frozen Foods' },
-  { value: 'beverages', label: 'Beverages' },
-  { value: 'snacks', label: 'Snacks' },
-  { value: 'household', label: 'Household' }
+  { value: 'beverages', label: 'Beverages' }
 ]
 
 export default function ProductGrid({ 
-  initialCategory = 'all', 
+  initialCategory = 'all',
+  initialSearch = '',
   className = '',
   aspectRatio = '1:1'
 }: ProductGridProps) {
@@ -42,10 +41,11 @@ export default function ProductGrid({
     try {
       setLoading(true)
       
-      const filters = {
+      const filters: any = {
         category: category === 'all' ? undefined : category,
         status: 'active'
       }
+      if (initialSearch) filters.search = initialSearch
       
       const fetchedProducts = await ProductService.getProducts(filters)
       

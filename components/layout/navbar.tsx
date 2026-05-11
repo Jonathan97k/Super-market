@@ -132,12 +132,13 @@ export default function Navbar() {
               </button>
 
               {/* Profile */}
-              <button
+              <a
+                href="/admin/login"
                 className="text-white hover:text-green-400 transition-colors p-2 rounded-lg hover:bg-white/10 hidden sm:block"
                 aria-label="User account"
               >
                 <User className="w-5 h-5" />
-              </button>
+              </a>
 
               {/* Mobile Menu Toggle - Only show on tablet, not mobile (bottom nav handles mobile) */}
               <button
