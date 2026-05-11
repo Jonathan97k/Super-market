@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { motion, useAnimation } from 'framer-motion'
 import { X, ChevronDown, ChevronUp, ShoppingCart, MessageCircle, Phone, Star, Tag, Truck } from 'lucide-react'
 import { useCartStore } from '@/store/cart-store'
 import { useUIStore } from '@/store/ui-store'
@@ -15,6 +16,7 @@ interface Category {
 
 export default function MobileMenu() {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([])
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false)
   const pathname = usePathname()
   const { getTotalItems } = useCartStore()
   const { toggleCart, mobileMenuOpen, toggleMobileMenu } = useUIStore()
@@ -23,6 +25,24 @@ export default function MobileMenu() {
     if (v !== isOpen) toggleMobileMenu()
   }
   const cartItemsCount = getTotalItems()
+  const marqueeRef = useRef<HTMLDivElement>(null)
+
+  // Intersection Observer to resume animation when scrolled out of view
+  useEffect(() => {
+    if (!marqueeRef.current) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            setIsMarqueePaused(false)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(marqueeRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   const categories: Category[] = [
     {
@@ -193,42 +213,37 @@ export default function MobileMenu() {
               </nav>
             </div>
 
-            {/* Categories */}
-            <div className="p-4 border-t">
+            {/* Categories - Horizontal Marquee */}
+            <div className="p-4 border-t overflow-hidden" ref={marqueeRef}>
               <h3 className="font-semibold text-gray-900 mb-3">Shop by Category</h3>
-              <div className="space-y-2">
+              <motion.div
+                className="flex space-x-4"
+                animate={{ x: isMarqueePaused ? 0 : ['-100%', '0%'] }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                    duration: 20,
+                    ease: 'linear',
+                  },
+                }}
+                onTouchStart={() => setIsMarqueePaused(true)}
+                onMouseDown={() => setIsMarqueePaused(true)}
+                onTouchEnd={() => setIsMarqueePaused(false)}
+                onMouseUp={() => setIsMarqueePaused(false)}
+                onMouseLeave={() => setIsMarqueePaused(false)}
+              >
                 {categories.map((category) => (
-                  <div key={category.name} className="border rounded-lg">
-                    <button
-                      onClick={() => toggleCategory(category.name)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 transition-colors"
-                    >
-                      <span className="font-medium text-gray-900">{category.name}</span>
-                      {category.subcategories && (
-                        expandedCategories.includes(category.name) ? (
-                          <ChevronUp className="w-4 h-4 text-gray-500" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4 text-gray-500" />
-                        )
-                      )}
-                    </button>
-                    {category.subcategories && expandedCategories.includes(category.name) && (
-                      <div className="border-t">
-                        {category.subcategories.map((sub) => (
-                          <a
-                            key={sub.name}
-                            href={sub.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block px-6 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-                          >
-                            {sub.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <a
+                    key={category.name}
+                    href={category.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex-shrink-0 px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 rounded-lg font-medium transition-colors"
+                  >
+                    {category.name}
+                  </a>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Quick Actions */}

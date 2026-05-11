@@ -131,7 +131,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-14">
         {/* Mobile Logo */}
-        <div className="lg:hidden mb-6 flex justify-center">
+        <div className="lg:hidden mb-6 flex justify-center relative z-20">
           <div className="relative h-14 w-48 bg-white rounded-lg overflow-hidden shadow-md">
             <Image
               src="/logo.png"
