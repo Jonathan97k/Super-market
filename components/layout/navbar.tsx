@@ -10,7 +10,7 @@ import SearchModal from './search-modal'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { searchOpen, setSearchOpen } = useUIStore()
+  const { searchOpen, setSearchOpen, toggleMobileMenu } = useUIStore()
   const pathname = usePathname()
   const { getTotalItems, toggleCart } = useCartStore()
   const cartItemsCount = getTotalItems()
@@ -141,9 +141,10 @@ export default function Navbar() {
                 <User className="w-5 h-5" />
               </a>
 
-              {/* Mobile Menu Toggle - Only show on tablet, not mobile (bottom nav handles mobile) */}
+              {/* Mobile Menu Toggle - shows on mobile & tablet (lg and below) */}
               <button
-                className="md:hidden lg:hidden text-white hover:text-green-400 transition-colors p-2 rounded-lg hover:bg-white/10"
+                onClick={toggleMobileMenu}
+                className="lg:hidden text-white hover:text-green-400 transition-colors p-2 rounded-lg hover:bg-white/10"
                 aria-label="Open mobile menu"
               >
                 <Menu className="w-5 h-5" />

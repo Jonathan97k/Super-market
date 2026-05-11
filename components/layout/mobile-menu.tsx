@@ -13,11 +13,14 @@ interface Category {
 }
 
 export default function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false)
   const [expandedCategories, setExpandedCategories] = useState<string[]>([])
   const pathname = usePathname()
   const { getTotalItems } = useCartStore()
-  const { toggleCart } = useUIStore()
+  const { toggleCart, mobileMenuOpen, toggleMobileMenu } = useUIStore()
+  const isOpen = mobileMenuOpen
+  const setIsOpen = (v: boolean) => {
+    if (v !== isOpen) toggleMobileMenu()
+  }
   const cartItemsCount = getTotalItems()
 
   const categories: Category[] = [
@@ -104,19 +107,7 @@ export default function MobileMenu() {
     return false
   }
 
-  if (!isOpen) {
-    return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="lg:hidden text-white hover:text-green-400 transition-colors p-2 rounded-lg hover:bg-white/10"
-        aria-label="Open mobile menu"
-      >
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    )
-  }
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
