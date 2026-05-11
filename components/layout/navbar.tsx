@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Search, ShoppingCart, User, Menu, X, Phone, MessageCircle } from 'lucide-react'
 import { useCartStore } from '@/store/cart-store'
 import { useUIStore } from '@/store/ui-store'
@@ -39,7 +41,7 @@ export default function Navbar() {
               <span className="font-semibold">🌟 Fresh Deals Daily</span>
             </div>
             <div className="hidden md:block text-center">
-              <span>🚚 Free delivery on orders above $50</span>
+              <span>🚚 Free delivery on orders above MK 50,000</span>
             </div>
             <div className="flex items-center space-x-4">
               <a
@@ -68,17 +70,22 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14 md:h-16">
             {/* Logo */}
-            <div className="flex items-center">
-              <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg md:text-xl">V</span>
-                </div>
-                <div className="hidden sm:block">
-                  <h1 className="text-white font-bold text-lg md:text-xl">VELOX MART</h1>
-                  <p className="text-green-400 text-[10px] md:text-xs">Fresh & Quality</p>
-                </div>
+            <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+              <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-lg overflow-hidden bg-white/95 ring-1 ring-white/20 shadow-md group-hover:ring-green-400/50 transition">
+                <Image
+                  src="/logo.png"
+                  alt="Jacke Mabvuka Supermarket"
+                  fill
+                  sizes="48px"
+                  className="object-contain p-0.5"
+                  priority
+                />
               </div>
-            </div>
+              <div className="hidden sm:block leading-tight">
+                <h1 className="text-white font-bold text-base md:text-lg tracking-wide">Jacke Mabvuka</h1>
+                <p className="text-green-400 text-[10px] md:text-xs font-medium">Supermarket</p>
+              </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-4 md:space-x-6 lg:space-x-8">

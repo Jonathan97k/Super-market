@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { X, ChevronDown, ChevronUp, ShoppingCart, MessageCircle, Phone, Star, Tag, Truck } from 'lucide-react'
 import { useCartStore } from '@/store/cart-store'
 import { useUIStore } from '@/store/ui-store'
@@ -123,12 +124,12 @@ export default function MobileMenu() {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-[#0B1F3A] text-white">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">V</span>
+              <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-white ring-1 ring-white/20 shadow">
+                <Image src="/logo.png" alt="Jacke Mabvuka" fill sizes="40px" className="object-contain p-0.5" />
               </div>
-              <div>
-                <h2 className="font-bold text-lg">VELOX MART</h2>
-                <p className="text-green-400 text-xs">Fresh & Quality</p>
+              <div className="leading-tight">
+                <h2 className="font-bold text-base">Jacke Mabvuka</h2>
+                <p className="text-green-400 text-[11px]">Supermarket</p>
               </div>
             </div>
             <button
